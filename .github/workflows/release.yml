@@ -35,5 +35,5 @@ jobs:
       - name: Publish package
         run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GHE_TOKEN }}
           PACKAGE_VERSION:  ${{ github.event.release.name }}
