@@ -33,7 +33,7 @@ jobs:
         run: npm run docs
 
       - name: Publish package
-        run: npm publish
+        run: npm publish --tag ${{ github.event.release.name }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GHE_TOKEN }}
-          PACKAGE_VERSION:  ${{ github.event.release.name }}
+          # PACKAGE_VERSION:  ${{ github.event.release.name }}
