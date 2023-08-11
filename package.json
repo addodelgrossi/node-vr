@@ -7,7 +7,8 @@
     "docs": "node docs/index.js",
     "test": "jest",
     "publish": "npm publish",
-    "lint": "eslint --fix"
+    "lint": "eslint --fix",
+    "build": "webpack --mode=production"
   },
   "author": "Addo Del Grossi",
   "license": "MIT",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "jsdoc": "^3.6.7",
     "jest": "^27.0.6",
-    "eslint": "^7.6.0"
+    "eslint": "^7.6.0",
+    "webpack": "^5.58.1"
   }
 }
