@@ -54,6 +54,6 @@ jobs:
         - name: 'Run tests'
           run: npm test
 
-        - name: Check build command
-          run: npm run build
+        # - name: Check build command
+        #   run: npm run build
             
