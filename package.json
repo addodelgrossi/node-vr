@@ -6,8 +6,8 @@
   "scripts": {
     "docs": "node docs/index.js",
     "test": "jest",
-    "publish": "npm publish"
-
+    "publish": "npm publish",
+    "lint": "eslint --fix"
   },
   "author": "Addo Del Grossi",
   "license": "MIT",
