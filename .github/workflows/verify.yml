@@ -1,0 +1,56 @@
+          
+
+name: Verify
+on:
+  pull_request:
+    branches:
+      - staging
+      - main
+
+jobs:
+
+  linters:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+    steps:
+      - name: 'Checkout code'
+        uses: actions/checkout@v3
+
+      - name: 'Set up Node.js'
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@addodelgrossi'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Check code style
+        run: npm run lint
+
+
+  tests:
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          node-version: [14.x, 16.x]
+      steps:
+        - name: 'Checkout code'
+          uses: actions/checkout@v3
+  
+        - name: 'Set up Node.js'
+          uses: actions/setup-node@v3
+          with:
+            node-version: ${{ matrix.node-version }}
+            registry-url: 'https://npm.pkg.github.com'
+            scope: '@addodelgrossi'
+  
+        - name: Install dependencies
+          run: npm install
+  
+        - name: 'Run tests'
+          run: npm test
+              
