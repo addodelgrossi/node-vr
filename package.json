@@ -6,7 +6,8 @@
   "scripts": {
     "docs": "node docs/index.js",
     "test": "jest",
-    "publish": "npm publish"
+    "publish": "npm publish",
+    "lint": "eslint --fix"
   },
   "author": "Addo Del Grossi",
   "license": "MIT",
@@ -21,6 +22,7 @@
   "dependencies": {},
   "devDependencies": {
     "jsdoc": "^3.6.7",
-    "jest": "^27.0.6"
+    "jest": "^27.0.6",
+    "eslint": "^7.6.0"
   }
 }
