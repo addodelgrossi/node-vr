@@ -1,0 +1,26 @@
+{
+  "name": "@vr-beneficios/node-vr",
+  "version": "1.0.2",
+  "description": "Node Project Sample",
+  "main": "src/my_module.js",
+  "scripts": {
+    "docs": "node docs/index.js",
+    "test": "jest",
+    "publish": "npm publish"
+  },
+  "author": "Addo Del Grossi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vr-beneficios/node-vr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vr-beneficios/node-vr/issues"
+  },
+  "homepage": "https://github.com/vr-beneficios/node-vr",
+  "dependencies": {},
+  "devDependencies": {
+    "jsdoc": "^3.6.7",
+    "jest": "^27.0.6"
+  }
+}

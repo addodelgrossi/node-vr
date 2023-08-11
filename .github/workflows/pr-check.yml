@@ -1,0 +1,58 @@
+name: Node.js CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docs_tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+    steps:
+      - name: 'Checkout code'
+        uses: actions/checkout@v3
+
+      - name: 'Set up Node.js'
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://npm.pkg.github.com'
+          # Defaults to the user or organization that owns the workflow file
+          scope: '@vr-beneficios'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: 'Run tests'
+        run: npm test
+        continue-on-error: true
+
+      - name: Check code style
+        run: npm run lint
+
+      # - name: Check for merge conflicts
+      #   run: |
+      #     git fetch origin ${{ github.head_ref }}
+      #     git merge-base --is-ancestor ${{ github.base_ref }} HEAD || exit 1
+      #   shell: bash
+
+      # - name: Block merge on error
+      #   if: ${{ failure() }}
+      #   run: |
+      #     echo "Error: Pull request cannot be merged. Please fix the issues and try again." > error.txt
+      #     gh pr review ${{ github.event.number }} --reject --body "$(cat error.txt)"
+      #   shell: bash
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Block merge on failed tests
+        if: ${{ failure() == false && steps.run_tests.outcome != 'success' }}
+        run: |
+          echo "Error: Pull request cannot be merged. Tests failed." > error.txt
+          gh pr review ${{ github.event.number }} --reject --body "$(cat error.txt)"
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        
