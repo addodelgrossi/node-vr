@@ -6,7 +6,6 @@
   "scripts": {
     "docs": "node docs/index.js",
     "test": "jest",
-    "publish": "npm publish",
     "lint": "eslint --fix",
     "build": "webpack --mode=production"
   },
